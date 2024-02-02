@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Extra Knowledge
+You can create a local api by using json-server that point to json file
+
+### Install json-server globally
+```
+npm install json-server -g
+```
+
+### Run and Watch
+```
+json-server --watch --port 4000 ./_data/db.json
+```
