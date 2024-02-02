@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 
-
 type NoteState = {
-  notes: Note[]
+  notes: Note[],
+  displayNoteForm: boolean,
+  toggleNoteForm: () => void,
   addNote: (note: Note) => void,
   getNoteList: () => Promise<void>
 }
@@ -15,10 +16,15 @@ type Note = {
 
 export const useNoteStore = create<NoteState>()((set) => ({
   notes: [],
+  displayNoteForm: false,
+  toggleNoteForm: () => set((state) => ({ displayNoteForm: !state.displayNoteForm })),
   addNote: (note: Note) => set((state) => ({ notes: [...state.notes, note] })),
   getNoteList: async () => {
-      const response = await fetch('https://localhost:4000/notes');
+      const response = await fetch('http://localhost:4000/notes');
       const notes = await response.json();
+
       set({ notes });
+
+      return notes;
   }
 }))
