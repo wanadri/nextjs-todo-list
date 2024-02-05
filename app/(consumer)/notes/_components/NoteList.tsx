@@ -21,7 +21,7 @@ function NoteList() {
 
   // actions
   const setWiggleCard = () =>   setEditMode(true);
-  const holdCard = () => holdTimeOut.current = setTimeout(setWiggleCard, 3000);
+  const holdCard = () => holdTimeOut.current = setTimeout(setWiggleCard, 1000);
   const cancelHoldTime = () => {
     if (! editMode) {
       clearTimeout(holdTimeOut.current)
