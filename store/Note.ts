@@ -5,7 +5,8 @@ type NoteState = {
   displayNoteForm: boolean,
   toggleNoteForm: () => void,
   addNote: (note: Note) => void,
-  getNoteList: () => Promise<void>
+  getNoteList: () => Promise<void>,
+  storeForm: (form: NoteForm) => void,
 }
 
 type Note = {
@@ -13,6 +14,8 @@ type Note = {
   title: string;
   content: string;
 }
+
+type NoteForm = Omit<Note, 'id'>;
 
 export const useNoteStore = create<NoteState>()((set) => ({
   notes: [],
@@ -26,5 +29,15 @@ export const useNoteStore = create<NoteState>()((set) => ({
       set({ notes });
 
       return notes;
-  }
+  },
+  storeForm: async (form: NoteForm) => {
+    console.log(form);
+    await fetch('http://localhost:4000/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form),
+    });
+  },
 }))

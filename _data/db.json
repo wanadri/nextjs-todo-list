@@ -1,63 +1,79 @@
 {
-    "tickets": [
-        {
-            "id": 1,
-            "title": "Ticket 1",
-            "description": "This is ticket 1",
-            "status": "Open"
-        },
-        {
-            "id": 2,
-            "title": "Ticket 2",
-            "description": "This is ticket 2",
-            "status": "Open"
-        },
-        {
-            "id": 3,
-            "title": "Ticket 3",
-            "description": "This is ticket 3",
-            "status": "Open"
-        },
-        {
-            "id": 4,
-            "title": "Ticket 4",
-            "description": "This is ticket 4",
-            "status": "Open"
-        },
-        {
-            "id": 5,
-            "title": "Ticket 5",
-            "description": "This is ticket 5",
-            "status": "Open"
-        }
-    ],
-    "cats": [
-        {
-            "id": 1,
-            "name": "Cat 1",
-            "color": "Black"
-        },
-        {
-            "id": 3,
-            "name": "Cat 3",
-            "color": "Gray"
-        }
-    ],
-    "notes": [
-        {
-            "id": 1,
-            "title": "Note 1",
-            "content": "This is note 1"
-        },
-        {
-            "id": 2,
-            "title": "Note 2",
-            "content": "This is note 2"
-        },
-        {
-            "id": 3,
-            "title": "Note 3",
-            "content": "This is note 3"
-        }
-    ]
+  "tickets": [
+    {
+      "id": "1",
+      "title": "Ticket 1",
+      "description": "This is ticket 1",
+      "status": "Open"
+    },
+    {
+      "id": "2",
+      "title": "Ticket 2",
+      "description": "This is ticket 2",
+      "status": "Open"
+    },
+    {
+      "id": "3",
+      "title": "Ticket 3",
+      "description": "This is ticket 3",
+      "status": "Open"
+    },
+    {
+      "id": "4",
+      "title": "Ticket 4",
+      "description": "This is ticket 4",
+      "status": "Open"
+    },
+    {
+      "id": "5",
+      "title": "Ticket 5",
+      "description": "This is ticket 5",
+      "status": "Open"
+    }
+  ],
+  "cats": [
+    {
+      "id": "1",
+      "name": "Cat 1",
+      "color": "Black"
+    },
+    {
+      "id": "3",
+      "name": "Cat 3",
+      "color": "Gray"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "title": "Note 1",
+      "content": "This is note 1"
+    },
+    {
+      "id": "2",
+      "title": "Note 2",
+      "content": "This is note 2"
+    },
+    {
+      "id": "3",
+      "title": "Note 3",
+      "content": "This is note 3"
+    },
+    {
+      "id": "d723"
+    },
+    {
+      "id": "ece0"
+    },
+    {
+      "id": "7ba0",
+      "title": "gagag",
+      "content": "agag"
+    },
+    {
+      "id": "f7cd",
+      "title": "gagag",
+      "content": "agagwhewh"
+    }
+  ]
 }
