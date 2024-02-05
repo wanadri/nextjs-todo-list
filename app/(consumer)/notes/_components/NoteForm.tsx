@@ -18,9 +18,7 @@ function NoteForm() {
         formState: { errors }
     } = useForm<FormData>();
 
-    const onSubmit = handleSubmit((data) => {
-        storeNote(data);
-    })
+    const onSubmit = handleSubmit((data) => storeNote(data));
 
   return (
     <>

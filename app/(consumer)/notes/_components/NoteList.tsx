@@ -68,8 +68,10 @@ function NoteList() {
             displayForm ?
               <NoteForm /> :
               <div className="flex flex-col items-center align-middle">
-                <button onClick={() => cancelEditMode()}>Cancel</button>
-                <br/>
+                {
+                      editMode &&
+                      <button onClick={() => cancelEditMode()}>Cancel</button>
+                }
                 <button onClick={() => toggleNoteForm()}>Add Note</button>
               </div>
           }
