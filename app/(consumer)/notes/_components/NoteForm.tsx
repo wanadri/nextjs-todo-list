@@ -1,7 +1,5 @@
 import { useNoteStore } from "@/store/Note";
-import { title } from "process";
-import { useState } from "react";
-import {useForm, SubmitHandler} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 type FormData = {
     title: string;
