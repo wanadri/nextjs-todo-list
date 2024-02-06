@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import useApi from '@/hooks/useApi';
 
 type NoteState = {
   notes: Note[],
@@ -24,7 +25,7 @@ export const useNoteStore = create<NoteState>()((set,get) => ({
   toggleNoteForm: () => set((state) => ({ displayNoteForm: !state.displayNoteForm })),
   addNote: (note: Note) => set((state) => ({ notes: [...state.notes, note] })),
   getNoteList: async () => {
-      const response = await fetch('http://localhost:4000/notes');
+      const response = await useApi.get({ url: '/notes' });
       const notes = await response.json();
 
       set({ notes });
@@ -32,21 +33,11 @@ export const useNoteStore = create<NoteState>()((set,get) => ({
       return notes;
   },
   storeForm: async (form: NoteForm) => {
-    await fetch('http://localhost:4000/notes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form),
-    });
-
+    await useApi.post({ url: '/notes', body: JSON.stringify(form) });
     await get().getNoteList();
   },
   deleteNote: async (id: string) => {
-    await fetch(`http://localhost:4000/notes/${id}`, {
-      method: 'DELETE',
-    });
-
+    await useApi.destroy({ url: `/notes/${id}` });
     await get().getNoteList();
   }
 }))
