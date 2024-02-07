@@ -1,4 +1,4 @@
-import { useNoteStore } from "@/store/Note";
+import { useNoteStore } from "@/store/note";
 import { useForm } from 'react-hook-form';
 
 type FormData = {

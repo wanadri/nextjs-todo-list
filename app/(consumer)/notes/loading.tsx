@@ -1,7 +1,7 @@
 function Loading() {
   return (
     <>
-    <div className="text-black">Loading</div>
+      <div className="text-black">Loading</div>
     </>
   )
 }

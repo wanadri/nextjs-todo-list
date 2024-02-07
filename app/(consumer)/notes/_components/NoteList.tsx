@@ -1,6 +1,6 @@
 "use client"
 
-import { useNoteStore } from "@/store/Note";
+import { useNoteStore } from "@/store/note";
 import { useEffect, useState, useRef } from "react";
 import NoteForm from "./NoteForm";
 import clsx from 'clsx';
