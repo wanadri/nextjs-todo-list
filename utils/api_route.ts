@@ -5,6 +5,7 @@ const route = {
   },
   erp: {
     list: '/erp/list',
+    region_polygon: '/polygon/region'
   },
 }
 

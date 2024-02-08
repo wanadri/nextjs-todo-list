@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.debug-mode {
+  @apply border border-red-500;
+}
 
+.enlarge-card{
+  @apply transform scale-105;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 .wiggle-card{
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) infinite;
