@@ -9,10 +9,14 @@ import { type LatLngExpression } from 'leaflet';
 function Map(props: any) {
   const { centerPosition = [3.291716, 101.479177], zoom = 10 } = props
   const regionPolygons: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] = useErpStore((state) => state.getLeafletPolygon());
+  const areaPolygons: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] = useErpStore((state) => state.getAreaPolygon());
 
   const regionOptions: PathOptions = {
     color: 'gray',
     fillOpacity: 0,
+  }
+  const areaOptions: PathOptions = {
+    color: 'red',
   }
 
   return (
@@ -32,6 +36,15 @@ function Map(props: any) {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Polygon>
+        {
+          areaPolygons.length && (
+            <Polygon positions={areaPolygons} pathOptions={areaOptions}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Polygon>
+          )
+        }
     </MapContainer>
   )
 }

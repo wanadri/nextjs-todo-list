@@ -3,6 +3,8 @@ import { create } from 'zustand'
 import route from '@/utils/api_route';
 import { IRegionPolygonResponse } from '@/interfaces/response/IRegionPolygonResponse';
 import { IAreaPolygon } from '@/interfaces/response/IAreaPolygon';
+import { type LatLngExpression } from 'leaflet';
+import { isNullOrUndefined } from '@/utils/helpers';
 
 type ErpState = {
   erpList: IErpListResponse[];
@@ -11,6 +13,8 @@ type ErpState = {
   selectedErpPolygon: IAreaPolygon[];
 
   getLeafletPolygon(): any;
+  getAreaPolygon(): any;
+
   getErpList(): Promise<IBaseResponse<IErpListResponse[]>>;
   getRegionPolygon(): Promise<IBaseResponse<IRegionPolygonResponse[]>>;
   getAreaPolygonPath(erp_id: string): Promise<IBaseResponse<IAreaPolygonPath>>;
@@ -27,6 +31,13 @@ export const useErpStore = create<ErpState>()((set, get) => ({
   getLeafletPolygon: () => {
     return get().regionPolygon.filter(region => region.type === 'polygon' && region.district !== 'Sepang').map((region) => {
       return region.coordinates.map((coordinate) => [coordinate.lat, coordinate.lng])
+    });
+  },
+  getAreaPolygon: () => {
+    return get().selectedErpPolygon.map((area) => {
+      return area.coordinates
+        .filter(coordinate => ! isNullOrUndefined(coordinate.lat))
+        .map((coordinate) => [coordinate.lat, coordinate.lng]);
     });
   },
 

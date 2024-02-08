@@ -9,27 +9,33 @@ function MapPage() {
   // state actions
   const getErpList = useErpStore((state) => state.getErpList);
   const getRegionPolygon = useErpStore((state) => state.getRegionPolygon);
+  const getAreaPolygon = useErpStore((state) => state.getAreaPolygonPath);
 
   // state
   const erpList = useErpStore((state) => state.erpList);
   const [displayMainModal, setDisplayMainModal] = useState(true);
 
-    useEffect(() => {
-      console.log(displayMainModal);
-    }, [displayMainModal])
+  useEffect(() => {
+    console.log(displayMainModal);
+  }, [displayMainModal])
 
-    useEffect(()=> {
-      getErpList()
-      getRegionPolygon()
-    }, [getErpList, getRegionPolygon])
+  useEffect(()=> {
+    getErpList()
+    getRegionPolygon()
+  }, [getErpList, getRegionPolygon])
 
-    const Map = useMemo(() => dynamic(
-      () => import('./_components/Map'),
-      {
-        loading: () => <p>Load map...</p>,
-        ssr: false
-      }
-    ), [])
+  const Map = useMemo(() => dynamic(
+    () => import('./_components/Map'),
+    {
+      loading: () => <p>Load map...</p>,
+      ssr: false
+    }
+  ), [])
+
+  async function viewDetails(slug: string) {
+    setDisplayMainModal(false);
+    await getAreaPolygon(slug);
+  }
 
   return (
     <div className="w-screen h-screen relative flex overflow-hidden">
@@ -49,7 +55,7 @@ function MapPage() {
                     {erpList.map((erp, i) => {
                       return (
                         <div
-                        onClick={() => setDisplayMainModal(false)}
+                        onClick={() => viewDetails(erp.slug)}
                         key={i}
                         className="h-full w-1/3 rounded-3xl p-4 scale-100 hover:scale-95 hover:transition-all cursor-pointer relative overflow-hidden shadow-md ">
                           <div className={
