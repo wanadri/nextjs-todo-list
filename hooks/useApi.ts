@@ -45,7 +45,7 @@ const _fetch = async <T>({
   params,
   body,
   customHeaders
-}: UseApiProps): Promise<IBaseResponse<T>> => {
+}: UseApiProps): Promise<T> => {
   let headers: HeadersInit = useProjectHeaders();
   let token = localStorage.getItem('token');
 
@@ -74,7 +74,7 @@ const _fetch = async <T>({
     headers = Object.assign(headers, customHeaders);
   }
 
-  return await ofetch<IBaseResponse<T>>(url, {
+  return await ofetch<T>(url, {
     baseURL: process.env.NEXT_PUBLIC_ENDPOINT,
     method,
     headers,

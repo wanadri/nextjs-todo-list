@@ -5,7 +5,8 @@ const route = {
   },
   erp: {
     list: '/erp/list',
-    region_polygon: '/polygon/region'
+    region_polygon: '/polygon/region',
+    area_polygon_path: '/erp/:erp_id/polygon/area-path'
   },
 }
 

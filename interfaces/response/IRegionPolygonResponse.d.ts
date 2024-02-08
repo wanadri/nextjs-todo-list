@@ -5,7 +5,7 @@ interface IRegionPolygonResponse {
   leafletLatLng?: any;
 }
 
-interface ICoordinate {
+export interface ICoordinate {
   lat: number;
   lng: number;
 }
