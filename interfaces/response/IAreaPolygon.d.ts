@@ -17,4 +17,5 @@ interface IAreaPolygon {
   color: string;
   wr_status: null;
   wr_color: null;
+  leafletLatLng?: Number[] | Number[][] | Number[][][] | null;
 }

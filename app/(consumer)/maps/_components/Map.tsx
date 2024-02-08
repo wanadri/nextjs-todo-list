@@ -8,15 +8,23 @@ import { type LatLngExpression } from 'leaflet';
 
 function Map(props: any) {
   const { centerPosition = [3.291716, 101.479177], zoom = 10 } = props
-  const regionPolygons: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] = useErpStore((state) => state.getLeafletPolygon());
-  const areaPolygons: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] = useErpStore((state) => state.getAreaPolygon());
+  const regionPolygons = useErpStore((state) => state.getLeafletPolygon());
+  const areaRecoveredPolygons: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] = useErpStore((state) => state.getRecoveredAreaPolygon());
+  const areaNotRecoveredPolygons: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] = useErpStore((state) => state.getNotRecoveredAreaPolygon());
+  const areaLowPressurePolygons: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][] = useErpStore((state) => state.getLowPressureAreaPolygon());
 
   const regionOptions: PathOptions = {
     color: 'gray',
     fillOpacity: 0,
   }
-  const areaOptions: PathOptions = {
+  const areaNotRecoveredOptions: PathOptions = {
     color: 'red',
+  }
+  const areaRecoveredOptions: PathOptions = {
+    color: 'green',
+  }
+  const areaLowPressureOptions: PathOptions = {
+    color: 'yellow',
   }
 
   return (
@@ -31,20 +39,38 @@ function Map(props: any) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-        <Polygon positions={regionPolygons} pathOptions={regionOptions}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Polygon>
-        {
-          areaPolygons.length && (
-            <Polygon positions={areaPolygons} pathOptions={areaOptions}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Polygon>
-          )
-        }
+        { regionPolygons.length && (
+            regionPolygons.map((region: any, index: any) => (
+              <Polygon key={index} positions={region.leafletLatLng} pathOptions={regionOptions}></Polygon>
+            ))
+        )}
+        { areaNotRecoveredPolygons.length && (
+            areaNotRecoveredPolygons.map((area: any, index: any) => (
+              <Polygon key={index} positions={area.leafletLatLng} pathOptions={areaNotRecoveredOptions}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Polygon>
+            ))
+        )}
+        { areaRecoveredPolygons.length && (
+            areaRecoveredPolygons.map((area: any, index: any) => (
+              <Polygon key={index} positions={area.leafletLatLng} pathOptions={areaRecoveredOptions}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Polygon>
+            ))
+        )}
+        { areaLowPressurePolygons.length && (
+            areaLowPressurePolygons.map((area: any, index: any) => (
+              <Polygon key={index} positions={area.leafletLatLng} pathOptions={areaLowPressureOptions}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Polygon>
+            ))
+        )}
     </MapContainer>
   )
 }

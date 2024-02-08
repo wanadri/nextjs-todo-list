@@ -14,6 +14,9 @@ type ErpState = {
 
   getLeafletPolygon(): any;
   getAreaPolygon(): any;
+  getRecoveredAreaPolygon(): any;
+  getNotRecoveredAreaPolygon(): any;
+  getLowPressureAreaPolygon(): any;
 
   getErpList(): Promise<IBaseResponse<IErpListResponse[]>>;
   getRegionPolygon(): Promise<IBaseResponse<IRegionPolygonResponse[]>>;
@@ -30,15 +33,51 @@ export const useErpStore = create<ErpState>()((set, get) => ({
   // getters
   getLeafletPolygon: () => {
     return get().regionPolygon.filter(region => region.type === 'polygon' && region.district !== 'Sepang').map((region) => {
-      return region.coordinates.map((coordinate) => [coordinate.lat, coordinate.lng])
+      region.leafletLatLng = region.coordinates.map((coordinate) => [coordinate.lat, coordinate.lng]);
+      return region;
     });
   },
   getAreaPolygon: () => {
     return get().selectedErpPolygon.map((area) => {
-      return area.coordinates
+      area.leafletLatLng = area.coordinates
         .filter(coordinate => ! isNullOrUndefined(coordinate.lat))
         .map((coordinate) => [coordinate.lat, coordinate.lng]);
+
+      return area;
     });
+  },
+  getRecoveredAreaPolygon: () => {
+    return get().selectedErpPolygon
+      .filter((area) => area.color === 'green')
+      .map((area) => {
+        area.leafletLatLng = area.coordinates
+          .filter(coordinate => ! isNullOrUndefined(coordinate.lat))
+          .map((coordinate) => [coordinate.lat, coordinate.lng]);
+
+        return area;
+      });
+  },
+  getNotRecoveredAreaPolygon: () => {
+    return get().selectedErpPolygon
+      .filter((area) => area.color === 'red')
+      .map((area) => {
+        area.leafletLatLng = area.coordinates
+          .filter(coordinate => ! isNullOrUndefined(coordinate.lat))
+          .map((coordinate) => [coordinate.lat, coordinate.lng]);
+
+        return area;
+      });
+  },
+  getLowPressureAreaPolygon: () => {
+    return get().selectedErpPolygon
+      .filter((area) => area.color === 'yellow')
+      .map((area) => {
+        area.leafletLatLng = area.coordinates
+          .filter(coordinate => ! isNullOrUndefined(coordinate.lat))
+          .map((coordinate) => [coordinate.lat, coordinate.lng]);
+
+        return area;
+      });
   },
 
   // actions

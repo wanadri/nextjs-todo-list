@@ -2,7 +2,7 @@ interface IRegionPolygonResponse {
   district: string;
   type: string;
   coordinates: ICoordinate[];
-  leafletLatLng?: any;
+  leafletLatLng?: Number[] | Number[][] | Number[][][] | null;
 }
 
 export interface ICoordinate {
