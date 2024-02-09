@@ -21,6 +21,8 @@ type ErpState = {
   getErpList(): Promise<IBaseResponse<IErpListResponse[]>>;
   getRegionPolygon(): Promise<IBaseResponse<IRegionPolygonResponse[]>>;
   getAreaPolygonPath(erp_id: string): Promise<IBaseResponse<IAreaPolygonPath>>;
+
+  setSelectedErp(slug: string): void;
 };
 
 export const useErpStore = create<ErpState>()((set, get) => ({
@@ -109,5 +111,9 @@ export const useErpStore = create<ErpState>()((set, get) => ({
     }
 
     return response;
+  },
+  setSelectedErp(slug: string): void {
+    const erp = get().erpList.find(erp => erp.slug === slug);
+    set({ selectedErp: erp });
   }
 }))

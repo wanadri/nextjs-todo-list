@@ -46,27 +46,36 @@ function Map(props: any) {
         )}
         { areaNotRecoveredPolygons.length && (
             areaNotRecoveredPolygons.map((area: any, index: any) => (
-              <Polygon key={index} positions={area.leafletLatLng} pathOptions={areaNotRecoveredOptions}>
+              <Polygon
+                key={index}
+                positions={area.leafletLatLng}
+                pathOptions={areaNotRecoveredOptions}>
                 <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
+                  {area.name}
                 </Popup>
               </Polygon>
             ))
         )}
         { areaRecoveredPolygons.length && (
             areaRecoveredPolygons.map((area: any, index: any) => (
-              <Polygon key={index} positions={area.leafletLatLng} pathOptions={areaRecoveredOptions}>
+              <Polygon
+                key={index}
+                positions={area.leafletLatLng}
+                pathOptions={areaRecoveredOptions}>
                 <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
+                  {area.name}
                 </Popup>
               </Polygon>
             ))
         )}
         { areaLowPressurePolygons.length && (
             areaLowPressurePolygons.map((area: any, index: any) => (
-              <Polygon key={index} positions={area.leafletLatLng} pathOptions={areaLowPressureOptions}>
+              <Polygon
+                key={index}
+                positions={area.leafletLatLng}
+                pathOptions={areaLowPressureOptions}>
                 <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
+                  {area.name}
                 </Popup>
               </Polygon>
             ))
